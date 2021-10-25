@@ -35,7 +35,6 @@ function generateComputerChoice() {
     document.getElementById("imgPcRock").style.visibility = "visible";
     document.getElementById("imgPcPaper").style.visibility = "hidden";
     document.getElementById("imgPcScissors").style.visibility = "hidden";
-    
   }
   if (randomNumber === 2) {
     computerChoice = paperOutFunction;
@@ -54,7 +53,6 @@ function generateComputerChoice() {
     computerChoiceDisplay.innerHTML = computerChoice;
   }, 0000);
 }
-
 
 const resultDisplay = document.getElementById("result");
 let result;
