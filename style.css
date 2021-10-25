@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Luckiest Guy", cursive;
+  font-weight: lighter;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgba(255, 121, 121, 0.3);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.game {
+  background: cornflowerblue;
+  margin: auto;
+  width: 490px;
+  border: 3px solid black;
+  border-radius: 6%;
+  padding: 10px;
+}
+
+form {
+  text-align: center;
+  font-size: 18px;
+  margin-top: -10px;
+  margin-bottom: 6px;
+}
+
+form label {
+  padding-right: 3px;
+  text-decoration: 3px #ffac26 underline;
+}
+input[placeholder] {
+  width: 120px;
+  background-color: rgb(201, 253, 246);
+}
+
+.nameButton {
+  background-color: transparent;
+  border-radius: 4px;
+  font-family: "Luckiest Guy", cursive;
+  font-weight: lighter;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  padding-top: 5px;
+}
+
+.nameButton:hover {
+  background-color: white;
+  color: cornflowerblue;
+}
+
+.nameButton:active {
+  color: cornflowerblue;
+  transform: scale(1.2);
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  min-height: 360px;
+}
+.player,
+.computer {
+  width: 300px;
+}
+.player img:first-of-type{
+  padding-bottom: 10px;
+}
+.computer  img:first-of-type{
+  padding-bottom: 10px;
+}
+
+
+/* @keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+} */
+
+.vs {
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+}
+
+/* .vs img {
+  width: 100px;
+  height: 100px;
+  animation-name: spin;
+  animation-duration: 80000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+} */
+h2 {
+  position: relative;
+  z-index: 10;
+}
+h2:nth-of-type(2) {
+  font-size: 24px;
+}
+
+.result{
+  margin-top: -60px;
+  color: #ffac26;
+  font-size: 24px;
+}
+
+.imgGame {
+  visibility: hidden;
+  display: flex;
+  justify-content: flex-start;
+}
+.imgPcGame {
+  visibility: hidden;
+  display: flex;
+  justify-content: flex-end;
+}
+.imgGame img, .imgPcGame img {
+  position: absolute;
+}
+.fakeButtons {
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+}
+
+a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  border: 3px solid rgb(255, 255, 255);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-radius: 20%;
+  background-color: rgb(79, 140, 255);
+  width: 131px;
+}
+
+a:hover {
+  color: rgb(255, 251, 190);
+  text-decoration: none;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 20%;
+  background-color: rgb(43, 70, 121);
+}
+a:active {
+  color: rgb(255, 251, 190);
+  text-decoration: none;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 20%;
+  background-color: rgb(43, 70, 121);
+  transform: scale(1.1);
+}
