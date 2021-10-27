@@ -99,3 +99,24 @@ function scissors() {
   document.getElementById("imgPaper").style.visibility = "hidden";
   document.getElementById("imgScissors").style.visibility = "visible";
 }
+
+// HTML //
+/*<button onclick="startCountdown()">start</button>
+
+<p id="demo"></p>
+
+<script>
+  let seconds = 3;
+  function startCountdown() {
+    console.log("start");
+    var x = setInterval(function () {
+      document.getElementById("demo").innerHTML = seconds;
+      if (seconds > 0) {
+        seconds--;
+      } else {
+          console.log("ready");
+          clearInterval(x);
+      }
+    }, 1000);
+  }
+</script>*/

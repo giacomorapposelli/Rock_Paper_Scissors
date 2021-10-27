@@ -68,12 +68,15 @@ input[placeholder] {
 .player,
 .computer {
   width: 300px;
+  
 }
 .player img:first-of-type{
   padding-bottom: 10px;
+  
 }
 .computer  img:first-of-type{
   padding-bottom: 10px;
+  
 }
 
 
@@ -89,17 +92,20 @@ input[placeholder] {
 .vs {
   display: flex;
   align-items: center;
-  visibility: hidden;
+  /* visibility: visible; */
+}
+.vs p {
+  z-index: 10;
 }
 
-/* .vs img {
+.vs img {
   width: 100px;
   height: 100px;
   animation-name: spin;
   animation-duration: 80000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-} */
+} 
 h2 {
   position: relative;
   z-index: 10;
@@ -142,6 +148,9 @@ a {
   border-radius: 20%;
   background-color: rgb(79, 140, 255);
   width: 131px;
+  box-shadow: 0px 0px 5px 2px rgba(247, 249, 201, .5);
+  /* in order: x offset, y offset, blur size, spread size, color */
+  /* blur size and spread size are optional (they default to 0) */
 }
 
 a:hover {
