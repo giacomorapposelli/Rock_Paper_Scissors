@@ -1,7 +1,8 @@
 /* TO FILL EMPTY VALIDATION INPUT */
+
 function getInputValue() {
   let namePlayer = document.getElementById("input").value;
-  var field = input.value;
+  let field = input.value;
 
   if (field.length < 1) {
     document.getElementById("name").innerHTML = "???";
@@ -10,16 +11,63 @@ function getInputValue() {
   }
 }
 
+input.addEventListener("keyup", function (event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    document.getElementById("myBtn").click();
+  }
+});
+
+/* ------------------------*/
+
+
+
 const computerChoiceDisplay = document.getElementById("computer-choice");
 const userChoiceDisplay = document.getElementById("user-choice");
-const possibleChoices = document.querySelectorAll("a");
+const possibleChoices = document.querySelectorAll("div.buttons > button");
 let userChoice;
 let computerChoice;
+
 
 possibleChoices.forEach((possibleChoice) =>
   possibleChoice.addEventListener("click", (e) => {
     userChoice = e.target.id;
-    userChoiceDisplay.innerHTML = userChoice;
+
+    setTimeout(() => {
+      if (possibleChoice === document.getElementById("Rock")) {
+        document.getElementById("imgRock").style.visibility = "visible";
+        document.getElementById("imgPaper").style.visibility = "hidden";
+        document.getElementById("imgScissors").style.visibility = "hidden";
+      }
+
+      if (possibleChoice === document.getElementById("Paper")) {
+        document.getElementById("imgRock").style.visibility = "hidden";
+        document.getElementById("imgPaper").style.visibility = "visible";
+        document.getElementById("imgScissors").style.visibility = "hidden";
+      }
+
+      if (possibleChoice === document.getElementById("Scissors")) {
+        document.getElementById("imgRock").style.visibility = "hidden";
+        document.getElementById("imgPaper").style.visibility = "hidden";
+        document.getElementById("imgScissors").style.visibility = "visible";
+      }
+
+      userChoiceDisplay.innerHTML = userChoice;
+    }, 750);
+
+    /* function startCountdown() { */
+    let seconds = 4;
+    ola();
+    let x = setInterval(ola, 250);
+    function ola() {
+      if (seconds < 2) {
+        clearInterval(x);
+        document.getElementById("vs").innerHTML = "FIGHT";
+      } else if (seconds > 1) {
+        seconds--;
+        document.getElementById("vs").innerHTML = seconds;
+      }
+    }
     getResult();
   })
 );
@@ -32,26 +80,32 @@ function generateComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3) + 1;
   if (randomNumber === 1) {
     computerChoice = rockOutFunction;
-    document.getElementById("imgPcRock").style.visibility = "visible";
-    document.getElementById("imgPcPaper").style.visibility = "hidden";
-    document.getElementById("imgPcScissors").style.visibility = "hidden";
+    setTimeout(() => {
+      document.getElementById("imgPcRock").style.visibility = "visible";
+      document.getElementById("imgPcPaper").style.visibility = "hidden";
+      document.getElementById("imgPcScissors").style.visibility = "hidden";
+    }, 750);
   }
   if (randomNumber === 2) {
     computerChoice = paperOutFunction;
-    document.getElementById("imgPcRock").style.visibility = "hidden";
-    document.getElementById("imgPcPaper").style.visibility = "visible";
-    document.getElementById("imgPcScissors").style.visibility = "hidden";
+    setTimeout(() => {
+      document.getElementById("imgPcRock").style.visibility = "hidden";
+      document.getElementById("imgPcPaper").style.visibility = "visible";
+      document.getElementById("imgPcScissors").style.visibility = "hidden";
+    }, 750);
   }
   if (randomNumber === 3) {
     computerChoice = scissorsOutFunction;
-    document.getElementById("imgPcRock").style.visibility = "hidden";
-    document.getElementById("imgPcPaper").style.visibility = "hidden";
-    document.getElementById("imgPcScissors").style.visibility = "visible";
+    setTimeout(() => {
+      document.getElementById("imgPcRock").style.visibility = "hidden";
+      document.getElementById("imgPcPaper").style.visibility = "hidden";
+      document.getElementById("imgPcScissors").style.visibility = "visible";
+    }, 750);
   }
 
   setTimeout(() => {
     computerChoiceDisplay.innerHTML = computerChoice;
-  }, 0000);
+  }, 750);
 }
 
 const resultDisplay = document.getElementById("result");
@@ -79,44 +133,52 @@ function getResult() {
   if (computerChoice === "Scissors" && userChoice === "Paper") {
     result = "you lose!";
   }
-  resultDisplay.innerHTML = result;
+  setTimeout(() => {
+    resultDisplay.innerHTML = result;
+  }, 750);
 }
 
-function rock() {
-  document.getElementById("imgRock").style.visibility = "visible";
-  document.getElementById("imgPaper").style.visibility = "hidden";
-  document.getElementById("imgScissors").style.visibility = "hidden";
+
+
+// DISABLE BUTTONS //
+function submitPoll1() {
+  document.getElementById("Rock").disabled = true;
+  setTimeout(function() {
+      document.getElementById("Rock").disabled = false;
+  }, 1000);
 }
+document.getElementById("Rock").addEventListener("click", submitPoll1);
 
-function paper() {
-  document.getElementById("imgRock").style.visibility = "hidden";
-  document.getElementById("imgPaper").style.visibility = "visible";
-  document.getElementById("imgScissors").style.visibility = "hidden";
+function submitPoll2() {
+  document.getElementById("Paper").disabled = true;
+  setTimeout(function() {
+      document.getElementById("Paper").disabled = false;
+  }, 1000);
 }
+document.getElementById("Paper").addEventListener("click", submitPoll2);
 
-function scissors() {
-  document.getElementById("imgRock").style.visibility = "hidden";
-  document.getElementById("imgPaper").style.visibility = "hidden";
-  document.getElementById("imgScissors").style.visibility = "visible";
+function submitPoll3() {
+  document.getElementById("Scissors").disabled = true;
+  setTimeout(function() {
+      document.getElementById("Scissors").disabled = false;
+  }, 1000);
 }
+document.getElementById("Scissors").addEventListener("click", submitPoll3);
 
-// HTML //
-/*<button onclick="startCountdown()">start</button>
 
-<p id="demo"></p>
 
-<script>
-  let seconds = 3;
-  function startCountdown() {
-    console.log("start");
-    var x = setInterval(function () {
-      document.getElementById("demo").innerHTML = seconds;
-      if (seconds > 0) {
-        seconds--;
-      } else {
-          console.log("ready");
-          clearInterval(x);
-      }
-    }, 1000);
-  }
-</script>*/
+
+// CODICE CARLO //
+/* let seconds = 3;
+const go = "GO!";
+function startCountdown() {
+  let x = setInterval(function () {
+    document.getElementById("vs").innerHTML = seconds;
+    if (seconds > 0) {
+      seconds--;
+    } else {
+       document.getElementById("vs").innerHTML = "GO!";
+      clearInterval(x);
+    }
+  }, 300);
+} */

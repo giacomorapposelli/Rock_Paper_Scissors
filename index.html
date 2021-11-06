@@ -20,12 +20,12 @@
             <h1>Game: Rock, Paper, Scissors</h1>
             <div class="form">
                 <form action="">
-                    <label for="uname">ENTER YOUR NAME</label>
+                    <label for="uName">ENTER YOUR NAME</label>
                     <input type="text" placeholder="Max 10 characters" maxlength="10" id="input">
                     <button type="button" class="nameButton" onclick="getInputValue();" id="myBtn">GO!</button>
                 </form>
             </div>
-            
+
             <div class="container">
                 <div class="player">
                     <h2 id="name">THE HUMAN</h2>
@@ -39,9 +39,9 @@
                         <div id="user-choice"></div>
                     </h2>
                 </div>
-                <div class="vs" >
+                <div class="vs">
                     <p id="vs"></p>
-                    <img src="./img/drone-gd7819" name="slide" width="120px" alt="" id="imgMiddle">
+                    <img src="./img/shapes-g4abf343e3_640.png" width="120px" alt="">
                 </div>
                 <div class="computer">
                     <h2>THE MACHINE</h2>
@@ -57,12 +57,13 @@
                 </div>
             </div>
             <div class="result">
+
                 <h2 id="result">SCORE</h2>
             </div>
-            <div class="fakeButtons">
-                <a href="#" id="Rock" onclick="generateComputerChoice(); rock()">ROCK</a>
-                <a href=" #" id="Paper" onclick="generateComputerChoice(); paper()">PAPER</a>
-                <a href="#" id="Scissors" onclick="generateComputerChoice(); scissors()">SCISSORS</a>
+            <div id="oi" class="buttons">
+               <button class="test" id="Rock" onclick="generateComputerChoice()">ROCK</button>
+               <button class="test" id="Paper" onclick="generateComputerChoice()">PAPER</button>
+               <button class="test" id="Scissors" onclick="generateComputerChoice()">SCISSORS</button>
             </div>
         </div>
     </main>

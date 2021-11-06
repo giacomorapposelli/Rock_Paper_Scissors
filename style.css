@@ -31,12 +31,13 @@ form {
 
 form label {
   padding-right: 3px;
-  text-decoration: 3px #ffac26 underline;
+  text-decoration: 3px rgb(255, 172, 38) underline;
 }
 input[placeholder] {
   width: 120px;
   background-color: rgb(201, 253, 246);
 }
+
 
 .nameButton {
   background-color: transparent;
@@ -45,8 +46,8 @@ input[placeholder] {
   font-weight: lighter;
   font-size: 18px;
   color: rgb(255, 255, 255);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 
+    1px 1px 0 #000; /* da controllare forse box shadow e inutile not DRY */
   padding-top: 5px;
 }
 
@@ -68,7 +69,6 @@ input[placeholder] {
 .player,
 .computer {
   width: 300px;
-  
 }
 .player img:first-of-type{
   padding-bottom: 10px;
@@ -79,32 +79,21 @@ input[placeholder] {
   
 }
 
-
-/* @keyframes spin {
-  from {
-      transform:rotate(0deg);
-  }
-  to {
-      transform:rotate(360deg);
-  }
-} */
-
 .vs {
   display: flex;
   align-items: center;
-  /* visibility: visible; */
 }
 .vs p {
+  position: relative;
   z-index: 10;
+  font-size: 40px;
+  width: 100px;
 }
 
 .vs img {
   width: 100px;
   height: 100px;
-  animation-name: spin;
-  animation-duration: 80000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  position: absolute;
 } 
 h2 {
   position: relative;
@@ -112,6 +101,10 @@ h2 {
 }
 h2:nth-of-type(2) {
   font-size: 24px;
+}
+
+.vs p {
+ margin: 0px;
 }
 
 .result{
@@ -125,6 +118,7 @@ h2:nth-of-type(2) {
   display: flex;
   justify-content: center;
 }
+
 .imgPcGame {
   visibility: hidden;
   display: flex;
@@ -133,13 +127,15 @@ h2:nth-of-type(2) {
 .imgGame img, .imgPcGame img {
   position: absolute;
 }
-.fakeButtons {
+.buttons {
   display: flex;
   justify-content: space-around;
   font-size: 20px;
 }
 
-a {
+.buttons button {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 20px;
   color: rgb(255, 255, 255);
   text-decoration: none;
   border: 3px solid rgb(255, 255, 255);
@@ -153,14 +149,14 @@ a {
   /* blur size and spread size are optional (they default to 0) */
 }
 
-a:hover {
+.buttons button:hover {
   color: rgb(255, 251, 190);
   text-decoration: none;
   border: 3px solid rgb(255, 255, 255);
   border-radius: 20%;
   background-color: rgb(43, 70, 121);
 }
-a:active {
+.buttons button:active {
   color: rgb(255, 251, 190);
   text-decoration: none;
   border: 3px solid rgb(255, 255, 255);
