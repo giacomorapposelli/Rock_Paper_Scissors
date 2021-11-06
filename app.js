@@ -12,7 +12,6 @@ function getInputValue() {
 }
 
 input.addEventListener("keyup", function (event) {
-  // Number 13 is the "Enter" key on the keyboard
   if (event.key === "Enter") {
     document.getElementById("myBtn").click();
   }
@@ -20,14 +19,11 @@ input.addEventListener("keyup", function (event) {
 
 /* ------------------------*/
 
-
-
 const computerChoiceDisplay = document.getElementById("computer-choice");
 const userChoiceDisplay = document.getElementById("user-choice");
 const possibleChoices = document.querySelectorAll("div.buttons > button");
 let userChoice;
 let computerChoice;
-
 
 possibleChoices.forEach((possibleChoice) =>
   possibleChoice.addEventListener("click", (e) => {
@@ -138,35 +134,30 @@ function getResult() {
   }, 750);
 }
 
-
-
 // DISABLE BUTTONS //
 function submitPoll1() {
   document.getElementById("Rock").disabled = true;
-  setTimeout(function() {
-      document.getElementById("Rock").disabled = false;
+  setTimeout(function () {
+    document.getElementById("Rock").disabled = false;
   }, 1000);
 }
 document.getElementById("Rock").addEventListener("click", submitPoll1);
 
 function submitPoll2() {
   document.getElementById("Paper").disabled = true;
-  setTimeout(function() {
-      document.getElementById("Paper").disabled = false;
+  setTimeout(function () {
+    document.getElementById("Paper").disabled = false;
   }, 1000);
 }
 document.getElementById("Paper").addEventListener("click", submitPoll2);
 
 function submitPoll3() {
   document.getElementById("Scissors").disabled = true;
-  setTimeout(function() {
-      document.getElementById("Scissors").disabled = false;
+  setTimeout(function () {
+    document.getElementById("Scissors").disabled = false;
   }, 1000);
 }
 document.getElementById("Scissors").addEventListener("click", submitPoll3);
-
-
-
 
 // CODICE CARLO //
 /* let seconds = 3;

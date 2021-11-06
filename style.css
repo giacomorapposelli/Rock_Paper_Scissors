@@ -152,15 +152,15 @@ h2:nth-of-type(2) {
 .buttons button:hover {
   color: rgb(255, 251, 190);
   text-decoration: none;
-  border: 3px solid rgb(255, 255, 255);
-  border-radius: 20%;
+  /* border: 3px solid rgb(255, 255, 255); */
+  /* border-radius: 20%; */
   background-color: rgb(43, 70, 121);
 }
 .buttons button:active {
   color: rgb(255, 251, 190);
   text-decoration: none;
-  border: 3px solid rgb(255, 255, 255);
-  border-radius: 20%;
+  /* border: 3px solid rgb(255, 255, 255); */
+ /*  border-radius: 20%; */
   background-color: rgb(43, 70, 121);
   transform: scale(1.1);
 }
