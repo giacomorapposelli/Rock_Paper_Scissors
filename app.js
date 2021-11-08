@@ -1,4 +1,4 @@
-/* TO FILL EMPTY VALIDATION INPUT */
+/* TO FILL EMPTY VALIDATION INPUT - MISSING 2ENTER" */
 
 function getInputValue() {
   let namePlayer = document.getElementById("input").value;
@@ -132,9 +132,42 @@ function getResult() {
   setTimeout(() => {
     resultDisplay.innerHTML = result;
   }, 750);
+  scoreUser();
 }
 
-// DISABLE BUTTONS //
+
+
+// ---------- not working ---------//
+
+let incrementUserScore = 0;
+let incrementComputerScore = 0;
+
+function scoreUser(){
+  if(result === "you win!"){
+   incrementUserScore++;
+   
+  } else if(result === "you lose!") {
+    incrementComputerScore++;
+    
+  }else{
+    console.log("suka")
+  }
+  setTimeout(() => {
+  document.getElementById("userScore").innerHTML = incrementUserScore;
+  document.getElementById("computerScore").innerHTML = incrementComputerScore;
+  console.log("incrementUserScore",  incrementUserScore, incrementComputerScore);
+}, 750);
+}
+
+  
+
+
+// --------------------- //
+
+
+
+
+// DISABLE BUTTONS - NEED TO BE DRY//
 function submitPoll1() {
   document.getElementById("Rock").disabled = true;
   setTimeout(function () {
@@ -159,7 +192,7 @@ function submitPoll3() {
 }
 document.getElementById("Scissors").addEventListener("click", submitPoll3);
 
-// CODICE CARLO //
+// WRONG INTERVAL //
 /* let seconds = 3;
 const go = "GO!";
 function startCountdown() {
