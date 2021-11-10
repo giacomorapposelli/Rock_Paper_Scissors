@@ -56,12 +56,13 @@ possibleChoices.forEach((possibleChoice) => {
     possibleChoice.addEventListener('click', (e) => {
         resultDisplay.innerHTML = 'waiting..';
         resetChoices(computerChoices, computerChoiceDisplay);
-        playersChoice(e.target.id).then(() => {
-            generateComputerChoice();
-            getResult();
-            scoreUser();
-            enableButtons(possibleChoices);
-        });
+        playersChoice(e.target.id)
+            .then(() => generateComputerChoice())
+            .then(() => {
+                getResult();
+                scoreUser();
+                enableButtons(possibleChoices);
+            });
         let seconds = 4;
         ola();
         let x = setInterval(ola, 500);
@@ -88,13 +89,6 @@ const playersChoice = (card) => {
             resolve();
         }, 1500);
     });
-};
-
-const generateComputerChoice = () => {
-    const randomNumber = Math.floor(Math.random() * 3);
-    computerChoice = choices[randomNumber];
-    computerChoices[randomNumber].style.visibility = 'visible';
-    computerChoiceDisplay.innerHTML = computerChoice;
 };
 
 const getResult = () => {
@@ -153,3 +147,18 @@ function startCountdown() {
     }
   }, 300);
 } */
+
+const generateComputerChoice = () => {
+    return new Promise((resolve) => {
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => {
+                const random = Math.floor(Math.random() * 3);
+                resetChoices(computerChoices, computerChoiceDisplay);
+                computerChoices[random].style.visibility = 'visible';
+                computerChoice = choices[random];
+                computerChoiceDisplay.innerHTML = computerChoice;
+            }, 48 * i);
+        }
+        setTimeout(resolve, 1498);
+    });
+};
