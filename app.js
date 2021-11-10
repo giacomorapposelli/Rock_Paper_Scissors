@@ -26,27 +26,41 @@ const computerChoiceDisplay = document.getElementById('computer-choice');
 const userChoices = document.querySelectorAll('.imgGame img');
 const userChoiceDisplay = document.getElementById('user-choice');
 const possibleChoices = document.querySelectorAll('div.buttons > button');
+const resultDisplay = document.getElementById('result');
 let userChoice;
 let computerChoice;
 let result;
 
-const resetChoices = (arr) => {
+const resetChoices = (arr, display) => {
     for (const choice of arr) {
         if (choice.style.visibility === 'visible') {
             choice.style.visibility = 'hidden';
         }
     }
-    computerChoiceDisplay.innerHTML = '';
+    display.innerHTML = '';
 };
 
-possibleChoices.forEach((possibleChoice) =>
+const disableButtons = (buttons) => {
+    for (const button of buttons) {
+        button.disabled = true;
+    }
+};
+
+const enableButtons = (buttons) => {
+    for (const button of buttons) {
+        button.disabled = false;
+    }
+};
+
+possibleChoices.forEach((possibleChoice) => {
     possibleChoice.addEventListener('click', (e) => {
         resultDisplay.innerHTML = 'waiting..';
-        resetChoices(computerChoices);
+        resetChoices(computerChoices, computerChoiceDisplay);
         playersChoice(e.target.id).then(() => {
             generateComputerChoice();
             getResult();
             scoreUser();
+            enableButtons(possibleChoices);
         });
         let seconds = 4;
         ola();
@@ -60,14 +74,15 @@ possibleChoices.forEach((possibleChoice) =>
                 document.getElementById('vs').innerHTML = seconds;
             }
         }
-    })
-);
+    });
+});
 
 const playersChoice = (card) => {
     userChoice = choices[choices.indexOf(card)];
-    resetChoices(userChoices);
+    resetChoices(userChoices, userChoiceDisplay);
     userChoices[choices.indexOf(card)].style.visibility = 'visible';
     userChoiceDisplay.innerHTML = userChoice;
+    disableButtons(possibleChoices);
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve();
@@ -82,9 +97,7 @@ const generateComputerChoice = () => {
     computerChoiceDisplay.innerHTML = computerChoice;
 };
 
-const resultDisplay = document.getElementById('result');
-
-function getResult() {
+const getResult = () => {
     if (computerChoice === userChoice) {
         result = 'TIE!';
     }
@@ -107,7 +120,7 @@ function getResult() {
         result = 'you lose!';
     }
     resultDisplay.innerHTML = result;
-}
+};
 
 // ---------- not working ---------//
 
@@ -125,33 +138,6 @@ function scoreUser() {
     document.getElementById('userScore').innerHTML = incrementUserScore;
     document.getElementById('computerScore').innerHTML = incrementComputerScore;
 }
-
-// --------------------- //
-
-// DISABLE BUTTONS - NEED TO BE DRY//
-function submitPoll1() {
-    document.getElementById('Rock').disabled = true;
-    setTimeout(function () {
-        document.getElementById('Rock').disabled = false;
-    }, 1000);
-}
-document.getElementById('Rock').addEventListener('click', submitPoll1);
-
-function submitPoll2() {
-    document.getElementById('Paper').disabled = true;
-    setTimeout(function () {
-        document.getElementById('Paper').disabled = false;
-    }, 1000);
-}
-document.getElementById('Paper').addEventListener('click', submitPoll2);
-
-function submitPoll3() {
-    document.getElementById('Scissors').disabled = true;
-    setTimeout(function () {
-        document.getElementById('Scissors').disabled = false;
-    }, 1000);
-}
-document.getElementById('Scissors').addEventListener('click', submitPoll3);
 
 // WRONG INTERVAL //
 /* let seconds = 3;
