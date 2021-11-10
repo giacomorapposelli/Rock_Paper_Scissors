@@ -1,80 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GAME | STR</title>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="shortcut icon" href="./img/banana.ico" type="image/x-icon" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAME | STR</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="shortcut icon" href="./img/banana.ico" type="image/x-icon">
-</head>
+    <body>
+        <header></header>
+        <main>
+            <div class="game">
+                <h1>Game: Rock, Paper, Scissors</h1>
+                <div class="form">
+                    <form action="" id="form">
+                        <label for="uName">ENTER YOUR NAME</label>
+                        <input
+                            type="text"
+                            placeholder="Max 10 characters"
+                            maxlength="10"
+                            id="input"
+                        />
+                        <button
+                            type="button"
+                            class="nameButton"
+                            onclick="getInputValue();"
+                            id="myBtn"
+                        >
+                            GO!
+                        </button>
+                    </form>
+                </div>
 
-<body>
-    <header>
-    </header>
-    <main>
-        <div class="game">
-            <h1>Game: Rock, Paper, Scissors</h1>
-            <div class="form">
-                <form action="">
-                    <label for="uName">ENTER YOUR NAME</label>
-                    <input type="text" placeholder="Max 10 characters" maxlength="10" id="input">
-                    <button type="button" class="nameButton" onclick="getInputValue();" id="myBtn">GO!</button>
-                </form>
-            </div>
-
-            <div class="container">
-                <div class="player">
-                    <h2 id="name">THE HUMAN</h2>
-                    <img src="./img/0zombie.png" alt="player" width="120px" height="190">
-                    <div class="imgGame">
-                        <img id="imgRock" src="./img/0rock.png" alt="" width="100" height="100">
-                        <img id="imgPaper" src="./img/0paper.png" alt="" width="100" height="100">
-                        <img id="imgScissors" src="./img/0scissors.png" alt="" width="100" height="100">
+                <div class="container">
+                    <div class="player">
+                        <h2 id="name">THE HUMAN</h2>
+                        <img
+                            src="./img/0zombie.png"
+                            alt="player"
+                            width="120px"
+                            height="190"
+                        />
+                        <div class="imgGame">
+                            <img
+                                id="imgRock"
+                                src="./img/0rock.png"
+                                alt=""
+                                width="100"
+                                height="100"
+                            />
+                            <img
+                                id="imgPaper"
+                                src="./img/0paper.png"
+                                alt=""
+                                width="100"
+                                height="100"
+                            />
+                            <img
+                                id="imgScissors"
+                                src="./img/0scissors.png"
+                                alt=""
+                                width="100"
+                                height="100"
+                            />
+                        </div>
+                        <h2>
+                            <div id="user-choice"></div>
+                        </h2>
                     </div>
-                    <h2>
-                        <div id="user-choice"></div>
-                    </h2>
-                </div>
 
-                <div class="vs">
-                    <p id="vs"></p>
-                    <img src="./img/shapes-g4abf343e3_640.png" width="120px" alt="">
-                </div>
-                <div class="computer">
-                    <h2>THE MACHINE</h2>
-                    <img src="./img/0droid.png" alt="the machine" width="120px" height="190">
-                    <div class="imgPcGame">
-                        <img id="imgPcRock" src="./img/0rock.png" alt="" width="100" height="100">
-                        <img id="imgPcPaper" src="./img/0paper.png" alt="" width="100" height="100">
-                        <img id="imgPcScissors" src="./img/0scissors.png" alt="" width="100" height="100">
+                    <div class="vs">
+                        <p id="vs"></p>
+                        <img
+                            src="./img/shapes-g4abf343e3_640.png"
+                            width="120px"
+                            alt=""
+                        />
                     </div>
-                    <h2>
-                        <div id="computer-choice"></div>
-                    </h2>
+                    <div class="computer">
+                        <h2>THE MACHINE</h2>
+                        <img
+                            src="./img/0droid.png"
+                            alt="the machine"
+                            width="120px"
+                            height="190"
+                        />
+                        <div class="imgPcGame">
+                            <img
+                                id="imgPcRock"
+                                src="./img/0rock.png"
+                                alt=""
+                                width="100"
+                                height="100"
+                            />
+                            <img
+                                id="imgPcPaper"
+                                src="./img/0paper.png"
+                                alt=""
+                                width="100"
+                                height="100"
+                            />
+                            <img
+                                id="imgPcScissors"
+                                src="./img/0scissors.png"
+                                alt=""
+                                width="100"
+                                height="100"
+                            />
+                        </div>
+                        <h2>
+                            <div id="computer-choice"></div>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="result">
+                    <h2 id="result">SCORE</h2>
+                </div>
+                <div id="oi" class="buttons">
+                    <button class="test" id="Rock">ROCK</button>
+                    <button class="test" id="Paper">PAPER</button>
+                    <button class="test" id="Scissors">SCISSORS</button>
+                </div>
+                <div class="scoreboard">
+                    <div id="userScore" class="score">0</div>
+                    <div>--- SCORE ---</div>
+                    <div id="computerScore" class="score">0</div>
                 </div>
             </div>
-
-            <div class="result">
-                <h2 id="result">SCORE</h2>
-            </div>
-            <div id="oi" class="buttons">
-                <button class="test" id="Rock" onclick="generateComputerChoice()">ROCK</button>
-                <button class="test" id="Paper" onclick="generateComputerChoice()">PAPER</button>
-                <button class="test" id="Scissors" onclick="generateComputerChoice()">SCISSORS</button>
-            </div>
-            <div class="scoreboard">
-                <div id="userScore" class="score">0</div>
-                <div>--- SCORE ---</div>
-                <div id="computerScore" class="score">0</div>
-            </div>
-        </div>
-    </main>
-    <footer>
-
-    </footer>
-    <script src="app.js" charset="utf-8"></script>
-</body>
-
+        </main>
+        <footer></footer>
+        <script src="app.js" charset="utf-8"></script>
+    </body>
 </html>
