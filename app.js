@@ -1,25 +1,6 @@
-/* TO FILL EMPTY VALIDATION INPUT - MISSING 2ENTER" */
-const form = document.getElementById('form');
-
-const getInputValue = () => {
-    let namePlayer = document.getElementById('input').value;
-    let field = input.value;
-
-    if (field.length < 1) {
-        document.getElementById('name').innerHTML = '???';
-    } else {
-        document.getElementById('name').innerHTML = namePlayer;
-    }
-    document.getElementById('input').innerHTML = '';
-    form.reset();
-};
-
-form.onsubmit = (e) => {
-    e.preventDefault();
-    getInputValue();
-};
-
-/* ------------------------*/
+const newGame = document.getElementById('new-game');
+const resetGame = document.getElementById('reset');
+const resetBtn = document.querySelector('.reset');
 const choices = ['Rock', 'Paper', 'Scissors'];
 const computerChoices = document.querySelectorAll('.imgPcGame img');
 const computerChoiceDisplay = document.getElementById('computer-choice');
@@ -27,9 +8,55 @@ const userChoices = document.querySelectorAll('.imgGame img');
 const userChoiceDisplay = document.getElementById('user-choice');
 const possibleChoices = document.querySelectorAll('div.buttons > button');
 const resultDisplay = document.getElementById('result');
+const userName = document.getElementById('name');
+const userScore = document.getElementById('userScore');
+const computerScore = document.getElementById('computerScore');
 let userChoice;
 let computerChoice;
 let result;
+let incrementUserScore = 0;
+let incrementComputerScore = 0;
+
+window.onload = () => {
+    if (localStorage.length) {
+        resetGame.style.display = 'block';
+        newGame.style.display = 'none';
+    }
+    if (localStorage.getItem('user'))
+        userName.innerHTML = localStorage.getItem('user');
+    if (localStorage.getItem('user-score'))
+        userScore.innerHTML = localStorage.getItem('user-score');
+    incrementUserScore = +localStorage.getItem('user-score');
+    if (localStorage.getItem('computer-score'))
+        computerScore.innerHTML = localStorage.getItem('computer-score');
+    incrementComputerScore = +localStorage.getItem('computer-score');
+};
+
+const getInputValue = () => {
+    let namePlayer = document.getElementById('input').value;
+    let field = input.value;
+
+    if (!field.length) {
+        userName.innerHTML = '???';
+    } else {
+        userName.innerHTML = namePlayer;
+    }
+    document.getElementById('input').innerHTML = '';
+    localStorage.setItem('user', !field.length ? '???' : namePlayer);
+    resetGame.style.display = 'block';
+    newGame.style.display = 'none';
+    newGame.reset();
+};
+
+newGame.onsubmit = (e) => {
+    e.preventDefault();
+    getInputValue();
+};
+
+resetBtn.onclick = () => {
+    localStorage.clear();
+    location.reload();
+};
 
 const resetChoices = (arr, display) => {
     for (const choice of arr) {
@@ -51,32 +78,6 @@ const enableButtons = (buttons) => {
         button.disabled = false;
     }
 };
-
-possibleChoices.forEach((possibleChoice) => {
-    possibleChoice.addEventListener('click', (e) => {
-        resultDisplay.innerHTML = 'waiting..';
-        resetChoices(computerChoices, computerChoiceDisplay);
-        playersChoice(e.target.id)
-            .then(() => generateComputerChoice())
-            .then(() => {
-                getResult();
-                scoreUser();
-                enableButtons(possibleChoices);
-            });
-        let seconds = 4;
-        ola();
-        let x = setInterval(ola, 500);
-        function ola() {
-            if (seconds < 2) {
-                clearInterval(x);
-                document.getElementById('vs').innerHTML = 'FIGHT';
-            } else if (seconds > 1) {
-                seconds--;
-                document.getElementById('vs').innerHTML = seconds;
-            }
-        }
-    });
-});
 
 const playersChoice = (card) => {
     userChoice = choices[choices.indexOf(card)];
@@ -116,37 +117,48 @@ const getResult = () => {
     resultDisplay.innerHTML = result;
 };
 
-// ---------- not working ---------//
+possibleChoices.forEach((possibleChoice) => {
+    possibleChoice.addEventListener('click', (e) => {
+        if (!localStorage.getItem('user')) {
+            alert('insert your name first!');
+            return;
+        }
+        resultDisplay.innerHTML = 'waiting..';
+        resetChoices(computerChoices, computerChoiceDisplay);
+        Promise.all([
+            playersChoice(e.target.id),
+            generateComputerChoice()
+        ]).then(() => {
+            getResult();
+            scoreUser();
+            enableButtons(possibleChoices);
+        });
+        let seconds = 4;
+        ola();
+        let x = setInterval(ola, 500);
+        function ola() {
+            if (seconds < 2) {
+                clearInterval(x);
+                document.getElementById('vs').innerHTML = 'FIGHT';
+            } else if (seconds > 1) {
+                seconds--;
+                document.getElementById('vs').innerHTML = seconds;
+            }
+        }
+    });
+});
 
-let incrementUserScore = 0;
-let incrementComputerScore = 0;
-
-function scoreUser() {
+const scoreUser = () => {
     if (result === 'you win!') {
         incrementUserScore++;
     } else if (result === 'you lose!') {
         incrementComputerScore++;
-    } else {
-        console.log('suka');
     }
-    document.getElementById('userScore').innerHTML = incrementUserScore;
-    document.getElementById('computerScore').innerHTML = incrementComputerScore;
-}
-
-// WRONG INTERVAL //
-/* let seconds = 3;
-const go = "GO!";
-function startCountdown() {
-  let x = setInterval(function () {
-    document.getElementById("vs").innerHTML = seconds;
-    if (seconds > 0) {
-      seconds--;
-    } else {
-       document.getElementById("vs").innerHTML = "GO!";
-      clearInterval(x);
-    }
-  }, 300);
-} */
+    localStorage.setItem('user-score', incrementUserScore);
+    localStorage.setItem('computer-score', incrementComputerScore);
+    userScore.innerHTML = incrementUserScore;
+    computerScore.innerHTML = incrementComputerScore;
+};
 
 const generateComputerChoice = () => {
     return new Promise((resolve) => {

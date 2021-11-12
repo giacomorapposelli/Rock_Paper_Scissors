@@ -15,7 +15,7 @@
             <div class="game">
                 <h1>Game: Rock, Paper, Scissors</h1>
                 <div class="form">
-                    <form action="" id="form">
+                    <form action="" id="new-game">
                         <label for="uName">ENTER YOUR NAME</label>
                         <input
                             type="text"
@@ -27,6 +27,16 @@
                             type="button"
                             class="nameButton"
                             onclick="getInputValue();"
+                            id="myBtn"
+                        >
+                            GO!
+                        </button>
+                    </form>
+                    <form action="" id="reset">
+                        <label for="uName">START A NEW GAME</label>
+                        <button
+                            type="button"
+                            class="nameButton reset"
                             id="myBtn"
                         >
                             GO!

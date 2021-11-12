@@ -1,180 +1,188 @@
-@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 body {
-  font-family: "Luckiest Guy", cursive;
-  font-weight: lighter;
-  text-align: center;
-  color: rgb(255, 255, 255);
-  background-color: rgba(255, 121, 121, 0.3);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+    font-family: 'Luckiest Guy', cursive;
+    font-weight: lighter;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 121, 121, 0.3);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
 
 .game {
-  background: cornflowerblue;
-  margin: auto;
-  width: 490px;
-  border: 3px solid black;
-  border-radius: 40px;
-  padding: 10px;
+    background: cornflowerblue;
+    margin: auto;
+    width: 490px;
+    border: 3px solid black;
+    border-radius: 40px;
+    padding: 10px;
 }
 
 form {
-  text-align: center;
-  font-size: 18px;
-  margin-top: -10px;
-  margin-bottom: 6px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: -10px;
+    margin-bottom: 6px;
 }
 
 form label {
-  padding-right: 3px;
-  text-decoration: 3px rgb(255, 172, 38) underline;
+    padding-right: 3px;
+    text-decoration: 3px rgb(255, 172, 38) underline;
 }
+
+#new-game {
+    display: block;
+}
+
+#reset {
+    display: none;
+}
+
 input[placeholder] {
-  width: 120px;
-  background-color: rgb(201, 253, 246);
+    width: 120px;
+    background-color: rgb(201, 253, 246);
 }
 
 .nameButton {
-  background-color: transparent;
-  border-radius: 4px;
-  font-family: "Luckiest Guy", cursive;
-  font-weight: lighter;
-  font-size: 18px;
-  color: rgb(255, 255, 255);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 
-    1px 1px 0 #000; /* da controllare forse box shadow e inutile not DRY */
-  padding-top: 5px;
+    background-color: transparent;
+    border-radius: 4px;
+    font-family: 'Luckiest Guy', cursive;
+    font-weight: lighter;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000; /* da controllare forse box shadow e inutile not DRY */
+    padding-top: 5px;
 }
 
 .nameButton:hover {
-  background-color: white;
-  color: cornflowerblue;
+    background-color: white;
+    color: cornflowerblue;
 }
 
 .nameButton:active {
-  color: cornflowerblue;
-  transform: scale(1.2);
+    color: cornflowerblue;
+    transform: scale(1.2);
 }
 
 .container {
-  display: flex;
-  justify-content: space-around;
-  min-height: 360px;
+    display: flex;
+    justify-content: space-around;
+    min-height: 360px;
 }
 .player,
 .computer {
-  width: 300px;
+    width: 300px;
 }
-.player img:first-of-type{
-  padding-bottom: 10px;
-  
+.player img:first-of-type {
+    padding-bottom: 10px;
 }
-.computer  img:first-of-type{
-  padding-bottom: 10px;
-  
+.computer img:first-of-type {
+    padding-bottom: 10px;
 }
 
 .vs {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 .vs p {
-  position: relative;
-  z-index: 10;
-  font-size: 40px;
-  width: 100px;
+    position: relative;
+    z-index: 10;
+    font-size: 40px;
+    width: 100px;
 }
 .vs img {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-} 
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
 h2 {
-  position: relative;
-  z-index: 10;
+    position: relative;
+    z-index: 10;
 }
 h2:nth-of-type(2) {
-  font-size: 24px;
+    font-size: 24px;
 }
 
 .vs p {
- margin: 0px;
+    margin: 0px;
 }
 
-.result{
-  margin-top: -60px;
-  color: #ffac26;
-  font-size: 24px;
+.result {
+    margin-top: -60px;
+    color: #ffac26;
+    font-size: 24px;
 }
 
 .imgGame {
-  visibility: hidden;
-  display: flex;
-  justify-content: center;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .imgPcGame {
-  visibility: hidden;
-  display: flex;
-  justify-content: center;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
 }
-.imgGame img, .imgPcGame img {
-  position: absolute;
+.imgGame img,
+.imgPcGame img {
+    position: absolute;
 }
 .buttons {
-  display: flex;
-  justify-content: space-around;
-  font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
 }
 
 .buttons button {
-  font-family: "Luckiest Guy", cursive;
-  font-size: 20px;
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  border: 3px solid rgb(255, 255, 255);
-  padding-top: 40px;
-  padding-bottom: 40px;
-  border-radius: 20%;
-  background-color: rgb(79, 140, 255);
-  width: 131px;
-  box-shadow: 0px 0px 5px 2px rgba(247, 249, 201, .5);
-  /* in order: x offset, y offset, blur size, spread size, color */
-  /* blur size and spread size are optional (they default to 0) */
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border: 3px solid rgb(255, 255, 255);
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 20%;
+    background-color: rgb(79, 140, 255);
+    width: 131px;
+    box-shadow: 0px 0px 5px 2px rgba(247, 249, 201, 0.5);
+    /* in order: x offset, y offset, blur size, spread size, color */
+    /* blur size and spread size are optional (they default to 0) */
 }
 
 .buttons button:hover {
-  color: rgb(255, 251, 190);
-  text-decoration: none;
-  background-color: rgb(43, 70, 121);
+    color: rgb(255, 251, 190);
+    text-decoration: none;
+    background-color: rgb(43, 70, 121);
 }
 .buttons button:active {
-  color: rgb(255, 251, 190);
-  text-decoration: none;
-  background-color: rgb(43, 70, 121);
-  transform: scale(1.1);
+    color: rgb(255, 251, 190);
+    text-decoration: none;
+    background-color: rgb(43, 70, 121);
+    transform: scale(1.1);
 }
 .scoreboard {
-  /* width: 200px;
+    /* width: 200px;
   margin: 0px auto; */
-  border: 3px solid white;
-  display: flex;
-  justify-content: space-around;
-  font-size: 20px;
-  background: cornflowerblue;
- /*  border: 3px solid black; */
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 30px;
-  color: #ffac26;
+    border: 3px solid white;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    background: cornflowerblue;
+    /*  border: 3px solid black; */
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 30px;
+    color: #ffac26;
 }
 .scoreboard h2 {
-  margin: 0px;
-  padding: 0px;
-  font-size: 0.8em;
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8em;
 }
