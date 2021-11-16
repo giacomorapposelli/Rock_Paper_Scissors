@@ -41,6 +41,13 @@
                         >
                             GO!
                         </button>
+                        <button
+                            type="button"
+                            class="nameButton toggle"
+                            id="myBtn"
+                        >
+                            MUTE SOUNDS
+                        </button>
                     </form>
                 </div>
 
@@ -127,7 +134,7 @@
                 </div>
 
                 <div class="result">
-                    <h2 id="result">SCORE</h2>
+                    <h2 id="result">CHOOSE</h2>
                 </div>
                 <div id="oi" class="buttons">
                     <button class="test" id="Rock">ROCK</button>
@@ -141,7 +148,10 @@
                 </div>
             </div>
         </main>
-        <footer></footer>
+        <audio src="shuffle.wav" type="audio/wav" id="shuffle"></audio>
+        <audio src="win.wav" type="audio/wav" id="win"></audio>
+        <audio src="lose.wav" type="audio/wav" id="lose"></audio>
+        <audio src="draw.wav" type="audio/wav" id="draw"></audio>
         <script src="app.js" charset="utf-8"></script>
     </body>
 </html>

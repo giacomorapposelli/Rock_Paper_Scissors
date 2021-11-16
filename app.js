@@ -1,6 +1,7 @@
 const newGame = document.getElementById('new-game');
 const resetGame = document.getElementById('reset');
 const resetBtn = document.querySelector('.reset');
+const soundsBtn = document.querySelector('.toggle');
 const choices = ['Rock', 'Paper', 'Scissors'];
 const computerChoices = document.querySelectorAll('.imgPcGame img');
 const computerChoiceDisplay = document.getElementById('computer-choice');
@@ -24,12 +25,14 @@ window.onload = () => {
     }
     if (localStorage.getItem('user'))
         userName.innerHTML = localStorage.getItem('user');
-    if (localStorage.getItem('user-score'))
+    if (localStorage.getItem('user-score')) {
         userScore.innerHTML = localStorage.getItem('user-score');
-    incrementUserScore = +localStorage.getItem('user-score');
-    if (localStorage.getItem('computer-score'))
+        incrementUserScore = localStorage.getItem('user-score');
+    }
+    if (localStorage.getItem('computer-score')) {
         computerScore.innerHTML = localStorage.getItem('computer-score');
-    incrementComputerScore = +localStorage.getItem('computer-score');
+        incrementComputerScore = localStorage.getItem('computer-score');
+    }
 };
 
 const getInputValue = () => {
@@ -79,6 +82,17 @@ const enableButtons = (buttons) => {
     }
 };
 
+const toggleAudio = () => {
+    const audios = document.querySelectorAll('audio');
+    for (const audio of audios) {
+        if (audio.muted) audio.muted = false;
+        else audio.muted = true;
+    }
+    if (soundsBtn.innerText === 'MUTE SOUNDS')
+        soundsBtn.innerHTML = 'UNMUTE SOUNDS';
+    else soundsBtn.innerHTML = 'MUTE SOUNDS';
+};
+
 const playersChoice = (card) => {
     userChoice = choices[choices.indexOf(card)];
     resetChoices(userChoices, userChoiceDisplay);
@@ -86,36 +100,32 @@ const playersChoice = (card) => {
     userChoiceDisplay.innerHTML = userChoice;
     disableButtons(possibleChoices);
     return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, 1500);
+        setTimeout(resolve, 1500);
     });
 };
 
 const getResult = () => {
-    if (computerChoice === userChoice) {
-        result = 'TIE!';
-    }
-    if (computerChoice === 'Rock' && userChoice === 'Paper') {
-        result = 'you win!';
-    }
-    if (computerChoice === 'Rock' && userChoice === 'Scissors') {
-        result = 'you lose!';
-    }
-    if (computerChoice === 'Paper' && userChoice === 'Scissors') {
-        result = 'you win!';
-    }
-    if (computerChoice === 'Paper' && userChoice === 'Rock') {
-        result = 'you lose!';
-    }
-    if (computerChoice === 'Scissors' && userChoice === 'Rock') {
-        result = 'you win!';
-    }
-    if (computerChoice === 'Scissors' && userChoice === 'Paper') {
-        result = 'you lose!';
+    switch (userChoice + computerChoice) {
+        case 'PaperRock':
+        case 'RockScissors':
+        case 'ScissorsPaper':
+            result = 'you win!';
+            document.querySelector('#win').play();
+            break;
+        case 'PaperScissors':
+        case 'ScissorsRock':
+        case 'RockPaper':
+            result = 'you lose!';
+            document.querySelector('#lose').play();
+            break;
+        default:
+            result = 'TIE!';
+            document.querySelector('#draw').play();
     }
     resultDisplay.innerHTML = result;
 };
+
+soundsBtn.onclick = toggleAudio;
 
 possibleChoices.forEach((possibleChoice) => {
     possibleChoice.addEventListener('click', (e) => {
@@ -125,14 +135,13 @@ possibleChoices.forEach((possibleChoice) => {
         }
         resultDisplay.innerHTML = 'waiting..';
         resetChoices(computerChoices, computerChoiceDisplay);
-        Promise.all([
-            playersChoice(e.target.id),
-            generateComputerChoice()
-        ]).then(() => {
-            getResult();
-            scoreUser();
-            enableButtons(possibleChoices);
-        });
+        playersChoice(e.target.id)
+            .then(() => generateComputerChoice())
+            .then(() => {
+                getResult();
+                scoreUser();
+                enableButtons(possibleChoices);
+            });
         let seconds = 4;
         ola();
         let x = setInterval(ola, 500);
@@ -161,16 +170,17 @@ const scoreUser = () => {
 };
 
 const generateComputerChoice = () => {
+    document.querySelector('#shuffle').play();
     return new Promise((resolve) => {
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 20; i++) {
             setTimeout(() => {
                 const random = Math.floor(Math.random() * 3);
                 resetChoices(computerChoices, computerChoiceDisplay);
                 computerChoices[random].style.visibility = 'visible';
                 computerChoice = choices[random];
                 computerChoiceDisplay.innerHTML = computerChoice;
-            }, 48 * i);
+            }, 71 * i);
         }
-        setTimeout(resolve, 1498);
+        setTimeout(resolve, 1491);
     });
 };
